@@ -1,5 +1,7 @@
 <x-layout>
-    <div>
-        <h1>Hello</h1>
-    </div>
+    <x-mid-panel>
+        @foreach ($posts as $post)
+            <x-post-snippet :post="$post"/>
+        @endforeach
+    </x-mid-panel>
 </x-layout>
