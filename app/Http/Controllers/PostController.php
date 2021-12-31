@@ -14,15 +14,14 @@ class PostController extends Controller
   public function create()
   {
     $attributes = $this->validatePost();
-
     Post::create($attributes);
   }
 
   protected function validatePost(): array
   {
     return request()->validate([
-      "title" => ["required"],
-      "excerpt" => ["required"],
+      "title" => ["required", "min:5"],
+      "excerpt" => ["required", "max:255"],
       "body" => ["required"],
     ]);
   }

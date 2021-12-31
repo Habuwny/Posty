@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", [PostController::class, "index"]);
+Route::get("/", [PostController::class, "index"])->name("home");
 
 Route::get("register", [RegisterController::class, "register"])->name(
   "register"

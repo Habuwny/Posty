@@ -4,7 +4,7 @@
             <div class=" bg-gray-500 py-6 px-10 rounded-lg">
                 <div class="mb-7 space-y-2">
                     <x-icons.logo/>
-                    <h3 class="font-bold text-2xl ">Welcome back, Log in to get back.</h3>
+                    <h3 class="font-bold text-2xl text-gray-100">Welcome back, Log in and get back.</h3>
                 </div>
                 <form action="{{ route('auth.login') }}" method="post" class="space-y-3">
                     @csrf

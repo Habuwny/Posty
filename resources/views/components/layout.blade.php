@@ -19,7 +19,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-200">
+<body class="bg-gray-900">
 <div class=" h-full relative" style="height: 100%; min-height: 100%">
     <x-nav/>
     <x-flash/>
@@ -27,5 +27,6 @@
         {{ $slot }}
         <x-bottom/>
     </div>
+</div>
 </body>
 </html>
