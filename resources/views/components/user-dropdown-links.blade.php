@@ -1,12 +1,12 @@
 @props(['links'])
 <div
-    class="bg-gray-500 px-4 rounded-xl  py-4 space-y-4 p-7 mt-2 " style="position: absolute; right: 0"
+    class="bg-sky-900 px-4 rounded-xl  py-4 space-y-4 p-7 mt-2 " style="position: absolute; right: 0"
 >
     <div class="space-y-2">
         @foreach($links as $link)
             @if ($link==='Log Out')
                 <a
-                    class="flex items-center px-3 border-b-2 border-gray-600 rounded cursor-pointer py-2 justify-start text-center  hover:bg-gray-700 hover:text-white focus:text-white"
+                    class="flex items-center px-3 border-b-2 border-gray-600 rounded cursor-pointer py-2 justify-start text-center   hover:bg-sky-700  focus:sky-800"
                     @click.prevent="document.querySelector('#logout-form').submit()"
                 >
                     <x-icons.logout/>
@@ -23,7 +23,7 @@
                     <x-icons.settings/>
                 </x-container.dropdown-item>
             @elseif($link==='Posting')
-                <x-container.dropdown-item routeLink="auth.logout" :link="$link">
+                <x-container.dropdown-item routeLink="posts.create" :link="$link">
                     <x-icons.posting/>
                 </x-container.dropdown-item>
             @elseif($link==='Dashboard')

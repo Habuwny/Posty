@@ -13,8 +13,17 @@ class PostFactory extends Factory
    */
   public function definition()
   {
+    $tags = collect([
+      "#JavaScript",
+      "#NodeJs",
+      "#Php",
+      "#Php",
+      "#VueJs",
+      "#Html",
+    ]);
     return [
       "title" => $this->faker->sentence(),
+      "tags" => $tags->random(),
       "excerpt" =>
         "<p>" . implode("</p><p>", $this->faker->paragraphs(2)) . "</p>",
       "body" =>

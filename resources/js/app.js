@@ -1,1 +1,7 @@
-require('./bootstrap');
+require("./bootstrap");
+
+// alert("a");
+//
+// document.getElementById("javascriptTag").onclick = () => {
+//   alert("aaa");
+// };

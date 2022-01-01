@@ -47,6 +47,7 @@ class UserFactory extends Factory
         "name" => "Ahmed Habuwny",
         "username" => "admin",
         "email" => "admin@dev.com",
+        "password" => "password",
       ];
     });
   }

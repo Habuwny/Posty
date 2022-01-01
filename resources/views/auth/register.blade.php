@@ -1,7 +1,7 @@
 <x-layout>
     <x-mid-panel>
         <div class="w-10/12 mx-auto  text-center">
-            <div class=" bg-gray-500 py-6 px-10 rounded-lg">
+            <div class=" bg-gray-800 py-6 px-10 rounded-lg">
                 <div class="mb-7 space-y-2">
                     <x-icons.logo/>
                     <h3 class="font-bold text-2xl text-gray-100">Register and start Posting to communicate.</h3>

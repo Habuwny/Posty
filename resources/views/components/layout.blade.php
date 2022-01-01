@@ -7,7 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/app.css">
+    <script src="/js/app.js" ></script>
     <script defer src="https://unpkg.com/alpinejs@3.7.1/dist/cdn.min.js"></script>
+
     <style>
         html{
             height: 100%;
