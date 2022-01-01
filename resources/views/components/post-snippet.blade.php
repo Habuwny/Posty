@@ -17,7 +17,7 @@
     <div class="">
         <div class="p-4 ">
             <div class="flex items-center justify-start space-x-5">
-            <a href="#" class="title text-slate-100 font-bold text-xl ">{{ $post->title }}</a>
+            <a href="{{route('post.show', ['username'=>$post->user->username, 'slug'=>$post->slug]) }}" class="title text-slate-100 font-bold text-xl ">{{ $post->title }}</a>
                 <span class="cursor-pointer">
                 <x-icons.goto />
                 </span>

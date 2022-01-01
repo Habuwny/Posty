@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class PostTableSeeder extends Seeder
 {
@@ -24,7 +25,9 @@ class PostTableSeeder extends Seeder
     Post::factory($postsCounter)
       ->make()
       ->each(function ($post) use ($users) {
-        $post->user_id = $users->random()->id;
+        $user = $users->random();
+        $post->user_id = $user->id;
+        $post->slug = Str::slug($post->title);
         $post->save();
       });
   }

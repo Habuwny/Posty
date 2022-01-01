@@ -16,6 +16,7 @@ class TagTableSeeder extends Seeder
       "#ReactJs",
       "#VueJs",
       "#Html",
+      "#General",
     ]);
 
     $tags->each(function ($tagName) {

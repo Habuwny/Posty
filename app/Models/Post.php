@@ -16,18 +16,29 @@ class Post extends Model
   {
     return $this->belongsTo(User::class);
   }
-  public function tags()
+
+  public function categories()
   {
     return $this->belongsToMany(Tag::class, "post_tags");
-  }
-
-  public function PostTags()
-  {
-    return $this->hasMany(PostTag::class);
   }
 
   public function scopeLatest(Builder $query)
   {
     return $query->orderBy(static::CREATED_AT, "desc");
   }
+
+  public function setTagsAttribute($tags)
+  {
+    //    if (!request()->tags ) {
+    //      $this->attributes["tags"] = "#General";
+    //    } else {
+    //      $this->attributes["tags"] = $tags;
+    //    }
+  }
+
+  //  public function setTitleAttribute($value)
+  //  {
+  //    $this->attributes["title"] = $value;
+  //    $this->attributes["slug"] = s($value);
+  //  }
 }

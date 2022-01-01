@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostTagTableSeeder extends Seeder
 {
@@ -17,14 +19,29 @@ class PostTagTableSeeder extends Seeder
     );
 
     $posts = Post::all();
-    $tags = Tag::all();
+    $tagCount = Tag::all()->count();
+    if (0 === $tagCount) {
+      $this->command->info(
+        "No tags found, skipping assigning tags to blog posts"
+      );
+      return;
+    }
+    Post::all()->each(function (Post $post) {
+      $takeTags = random_int(2, 6);
+      $tagsStr = Tag::inRandomOrder()
+        ->take($takeTags)
+        ->get()
+        ->pluck("name");
+      $tags = Tag::inRandomOrder()
+        ->take($takeTags)
+        ->get()
+        ->pluck("id");
 
-    PostTag::factory($postsCounter)
-      ->make()
-      ->each(function ($postTag) use ($posts, $tags) {
-        $postTag->post_id = $posts->random()->id;
-        $postTag->tag_id = $tags->random()->id;
-        $postTag->save();
-      });
+      $post->categories()->sync($tags);
+      //      $post->tags = implode(",", $tagsStr->toArray());
+      $newPost = DB::table("posts")
+        ->where("id", $post->id)
+        ->update(["tags" => implode(",", $tagsStr->toArray())]);
+    });
   }
 }

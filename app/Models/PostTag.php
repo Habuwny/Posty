@@ -10,8 +10,9 @@ class PostTag extends Model
 
   protected $guarded = [];
 
-  public function posts()
-  {
-    return $this->hasMany(Post::class);
-  }
+  public $timestamps = false;
+  //  public function posts()
+  //  {
+  //    return $this->hasMany(Post::class);
+  //  }
 }

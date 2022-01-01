@@ -13,8 +13,7 @@
                     <x-form.input name="username" type="text" error="{{ $errors->first('username') ?? '' }}"/>
                     <x-form.input name="password" type="password" error="{{ $errors->first('password') ?? '' }}"/>
 
-
-                    <x-form.submit name="Sign Up"/>
+                    <x-form.submit name="Sign Up" class="bg-violet-900"/>
                 </form>
             </div>
         </div>

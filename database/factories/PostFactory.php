@@ -24,10 +24,9 @@ class PostFactory extends Factory
     return [
       "title" => $this->faker->sentence(),
       "tags" => $tags->random(),
-      "excerpt" =>
-        "<p>" . implode("</p><p>", $this->faker->paragraphs(2)) . "</p>",
-      "body" =>
-        "<p>" . implode("</p><p>", $this->faker->paragraphs(6)) . "</p>",
+      "slug" => $tags->random(),
+      "excerpt" => $this->faker->paragraph(),
+      "body" => $this->faker->paragraphs(6, true),
       "created_at" => $this->faker->dateTimeBetween("-3 months"),
     ];
   }

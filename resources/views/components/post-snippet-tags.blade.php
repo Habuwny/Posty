@@ -1,14 +1,22 @@
-@props(['tags']);
+@props(['tags'])
 <div class="inline-grid grid-cols-3 gap-2 mt-3 text-center">
 
+
     @foreach ( $tags as $tag)
-        {{ddd($tags->tags)}}
-        <span class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-violet-900">{{$tag}}</span>
+        @if ( $tag->name === '#General')
+            <a class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-gray-900 hover:bg-black "
+            >
+                {{ $tag->name }}
+            </a>
+
+        @else
+            <a class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4
+            {{  $loop->even ? 'bg-violet-900 hover:bg-violet-800 ':
+            'bg-emerald-900 hover:bg-emerald-800'}} "
+            >
+                {{ $tag->name }}
+            </a>
+        @endif
+
     @endforeach
-{{--    <span class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-violet-900">#javascript</span>--}}
-{{--    <span class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-emerald-900">#Html</span>--}}
-{{--    <span class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-violet-900">#NodeJs</span>--}}
-{{--    <span class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-emerald-900">#Php</span>--}}
-{{--    <span class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-violet-900">#VueJs</span>--}}
-{{--    <span class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-emerald-900">#ReactJs</span>--}}
 </div>
