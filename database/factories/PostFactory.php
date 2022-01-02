@@ -26,7 +26,7 @@ class PostFactory extends Factory
       "tags" => $tags->random(),
       "slug" => $tags->random(),
       "excerpt" => $this->faker->paragraph(),
-      "body" => $this->faker->paragraphs(6, true),
+      "body" => $this->faker->paragraphs(12, true),
       "created_at" => $this->faker->dateTimeBetween("-3 months"),
     ];
   }

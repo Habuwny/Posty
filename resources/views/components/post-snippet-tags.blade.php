@@ -4,7 +4,7 @@
 
     @foreach ( $tags as $tag)
         @if ( $tag->name === '#General')
-            <a class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-gray-900 hover:bg-black "
+            <a class="rounded text-slate-100 tracking-wide cursor-pointer font-bold px-4 bg-gray-500 hover:bg-gray-600 "
             >
                 {{ $tag->name }}
             </a>

@@ -11,10 +11,12 @@ Route::get("/", [PostController::class, "index"])->name("home");
 Route::get("/posting", [PostController::class, "create"])->name("posts.create");
 Route::post("/posting", [PostController::class, "store"])->name("posts.store");
 
-Route::get("/{username}/posts/{slug}", [PostController::class, "show"])->name(
+Route::get("/posts/{post:slug}", [PostController::class, "show"])->name(
   "post.show"
 );
-
+Route::post("/posts/{post}/like", [PostController::class, "like"])->name(
+  "post.like"
+);
 Route::get("register", [RegisterController::class, "register"])->name(
   "register"
 );

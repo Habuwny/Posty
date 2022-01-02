@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Post;
-use App\Models\PostTag;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 
@@ -26,7 +26,7 @@ class PostController extends Controller
   public function store()
   {
     request()->slug = Str::slug(request()->title);
-    //    ddd(request()->slug);
+
     $attributes = array_merge($this->validatePost(), [
       "user_id" => request()->user()->id,
       "slug" => request()->slug,
@@ -44,9 +44,23 @@ class PostController extends Controller
     return redirect("/")->with("success", "Post Published 👍 🎉");
   }
 
-  public function show()
+  public function show(Post $post)
   {
-    return view("posts.show");
+    return view("posts.show", ["post" => $post]);
+  }
+
+  public function like(Post $post)
+  {
+    $like = Like::where("post_id", "=", $post->id)
+      ->where("user_id", auth()->user()->id)
+      ->first();
+    if ($like) {
+      return $like->delete();
+    } else {
+      Like::create(["post_id" => $post->id, "user_id" => auth()->user()->id]);
+    }
+
+    return back();
   }
 
   protected function validatePost(): array

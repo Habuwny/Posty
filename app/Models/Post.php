@@ -27,6 +27,10 @@ class Post extends Model
     return $query->orderBy(static::CREATED_AT, "desc");
   }
 
+  public function likes()
+  {
+    return $this->hasMany(Like::class);
+  }
   public function setTagsAttribute($tags)
   {
     //    if (!request()->tags ) {
@@ -36,9 +40,9 @@ class Post extends Model
     //    }
   }
 
-  //  public function setTitleAttribute($value)
-  //  {
-  //    $this->attributes["title"] = $value;
-  //    $this->attributes["slug"] = s($value);
-  //  }
+  public function setTitleAttribute($value)
+  {
+    $this->attributes["title"] = $value;
+    $this->attributes["slug"] = $value;
+  }
 }

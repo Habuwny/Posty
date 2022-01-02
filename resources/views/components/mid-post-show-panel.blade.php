@@ -1,6 +1,6 @@
 
 
 
-<div class="sm:w-11/12 md:w-10/12 lg:w-3/4 mx-auto  mt-6 lg:mt-18 ">
+<div class="lg:w-3/4 md:w-10/12 sm:w-full  mx-auto sm:px-6  mt-6 lg:mt-18 ">
     {{ $slot }}
 </div>
