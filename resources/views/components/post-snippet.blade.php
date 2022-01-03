@@ -6,7 +6,7 @@
                  height="40" width="40"
                  class="cursor-pointer rounded-full border-solid border-2 border-light-blue-500"
             >
-            <div class="flex flex-col justify-start relative">
+            <div class="flex flex-col justify-start relative pr-4">
                 <a href="/" class="text-slate-100 title font-bold text-lg">{{ $post->user->name }}</a>
                 <span
                     class="w-full  left-0 top-6 text-gray-900 font-bold text-sm absolute"> {{ $post->created_at->diffForHumans() }}</span>

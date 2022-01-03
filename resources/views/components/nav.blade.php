@@ -16,7 +16,8 @@
     <div class="flex space-x-3 justify-center items-center">
         @auth()
             <x-icons.subscribe/>
-            <x-icons.notification class=""/>
+            <x-notification.notification-show />
+
             <x-user-dropdown
                 :links="['Dashboard', 'Posting', 'Settings', 'Log Out']"
             />

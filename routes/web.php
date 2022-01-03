@@ -17,6 +17,10 @@ Route::get("/posts/{post:slug}", [PostController::class, "show"])->name(
 Route::post("/posts/{post}/like", [PostController::class, "like"])->name(
   "post.like"
 );
+Route::post("/posts/{post}/comment", [PostController::class, "comment"])->name(
+  "post.comment"
+);
+
 Route::get("register", [RegisterController::class, "register"])->name(
   "register"
 );

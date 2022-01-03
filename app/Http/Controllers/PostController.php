@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\Tag;
@@ -14,7 +15,7 @@ class PostController extends Controller
     return view("posts.index", [
       "posts" => Post::latest()
         ->with("categories")
-        ->get(),
+        ->simplePaginate(5),
     ]);
   }
 
@@ -46,7 +47,20 @@ class PostController extends Controller
 
   public function show(Post $post)
   {
-    return view("posts.show", ["post" => $post]);
+    if (auth()->user()) {
+      $isLiked =
+        Like::where("post_id", "=", $post->id)
+          ->where("user_id", auth()->user()->id)
+          ->first() ?? false;
+    } else {
+      $isLiked = false;
+    }
+
+    return view("posts.show", [
+      "post" => $post,
+      "comments" => Comment::latest()->paginate(10),
+      "isLiked" => !!$isLiked,
+    ]);
   }
 
   public function like(Post $post)
@@ -61,6 +75,22 @@ class PostController extends Controller
     }
 
     return back();
+  }
+
+  public function comment(Post $post)
+  {
+    $validate = request()->validate([
+      "content" => ["required"],
+    ]);
+    $attributes = array_merge($validate, [
+      "user_id" => request()->user()->id,
+      "post_id" => $post->id,
+    ]);
+    //    ddd($attributes);
+
+    Comment::create($attributes);
+
+    return redirect()->back();
   }
 
   protected function validatePost(): array

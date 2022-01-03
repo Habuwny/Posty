@@ -6,11 +6,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-  /**
-   * Seed the application's database.
-   *
-   * @return void
-   */
   public function run()
   {
     if ($this->command->confirm("Refresh All Databases ?")) {
@@ -22,6 +17,8 @@ class DatabaseSeeder extends Seeder
       TagTableSeeder::class,
       PostTableSeeder::class,
       PostTagTableSeeder::class,
+      LikeTableSeeder::class,
+      CommentTableSeeder::class,
     ]);
   }
 }
