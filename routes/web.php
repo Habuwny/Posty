@@ -3,8 +3,9 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserNotificationController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [PostController::class, "index"])->name("home");
@@ -21,6 +22,11 @@ Route::post("/posts/{post}/comment", [PostController::class, "comment"])->name(
   "post.comment"
 );
 
+Route::get("/userNotifications/{userNotification}", [
+  UserNotificationController::class,
+  "seen",
+])->name("userNotification.seen");
+
 Route::get("register", [RegisterController::class, "register"])->name(
   "register"
 );
@@ -35,3 +41,8 @@ Route::post("auth/login", [LoginController::class, "session"])->name(
 Route::post("auth/logout", [LogoutController::class, "logout"])->name(
   "auth.logout"
 );
+
+Route::get("{user:username}/settings", [
+  UserController::class,
+  "settings",
+])->name("username.settings");

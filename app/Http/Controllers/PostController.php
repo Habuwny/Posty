@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\UserNotification;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -71,7 +72,19 @@ class PostController extends Controller
     if ($like) {
       return $like->delete();
     } else {
-      Like::create(["post_id" => $post->id, "user_id" => auth()->user()->id]);
+      $newLike = Like::create([
+        "post_id" => $post->id,
+        "user_id" => auth()->user()->id,
+      ]);
+      if ($newLike->user_id !== $post->user_id) {
+        $notify = new UserNotification();
+        $notify->seen = "false";
+        $notify->type = "like";
+        $notify->post_id = $post->id;
+        $notify->user_id = $post->user_id;
+        $notify->notifier_id = auth()->user()->id;
+        $notify->save();
+      }
     }
 
     return back();
@@ -86,10 +99,17 @@ class PostController extends Controller
       "user_id" => request()->user()->id,
       "post_id" => $post->id,
     ]);
-    //    ddd($attributes);
 
-    Comment::create($attributes);
-
+    $comment = Comment::create($attributes);
+    if ($comment->user_id !== $post->user_id) {
+      $notify = new UserNotification();
+      $notify->seen = "false";
+      $notify->type = "comment";
+      $notify->post_id = $post->id;
+      $notify->user_id = $post->user_id;
+      $notify->notifier_id = auth()->user()->id;
+      $notify->save();
+    }
     return redirect()->back();
   }
 

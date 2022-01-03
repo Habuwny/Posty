@@ -22,13 +22,15 @@ class LikeTableSeeder extends Seeder
       $like->post_id = $post->id;
       $like->save();
 
-      $notify = new UserNotification();
-      $notify->seen = "false";
-      $notify->type = "like";
-      $notify->post_id = $user->id;
-      $notify->user_id = $post->user->id;
-      $notify->notifier_id = $user->id;
-      $notify->save();
+      if ($post->user->id !== $user->id) {
+        $notify = new UserNotification();
+        $notify->seen = "false";
+        $notify->type = "like";
+        $notify->post_id = $post->id;
+        $notify->user_id = $post->user_id;
+        $notify->notifier_id = $user->id;
+        $notify->save();
+      }
     });
   }
 }
