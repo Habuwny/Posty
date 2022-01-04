@@ -2,14 +2,17 @@
 <div class="sm:rounded-none md:rounded-xl lg:rounded-xl bg-gray-800 space-y-0.5">
     <div class="sm:rounded-none md:rounded-xl lg:rounded-xl pl-4 py-3 bg-gray-700 flex justify-between items-center ">
         <div class="flex  items-center space-x-3">
-            <img src="https://i.pravatar.cc/150?u={{$post->id}}" alt="{{ $post->user->name }}"
-                 height="40" width="40"
-                 class="cursor-pointer rounded-full border-solid border-2 border-light-blue-500"
-            >
-            <div class="flex flex-col justify-start relative pr-4">
-                <a href="/" class="text-slate-100 title font-bold text-lg">{{ $post->user->name }}</a>
+            <a href="{{ route('user.dashboard', ['user'=> $post->user->username]) }}">
+                <img src="https://i.pravatar.cc/150?u={{$post->id}}" alt="{{ $post->user->name }}"
+                     height="40" width="40"
+                     class="cursor-pointer rounded-full border-solid border-2 border-light-blue-500"
+                >
+            </a>
+            <div class="flex flex-col   justify-start  pr-4">
+                <a href="{{ route('user.dashboard', ['user'=> $post->user->username]) }}"
+                   class="text-slate-100 title font-bold text-lg">{{ $post->user->name }}</a>
                 <span
-                    class="w-full  left-0 top-6 text-gray-900 font-bold text-sm absolute"> {{ $post->created_at->diffForHumans() }}</span>
+                    class="w-full  left-0 top-6 text-gray-900 font-bold text-sm "> {{ $post->created_at->diffForHumans() }}</span>
             </div>
         </div>
         <span class="text-blue-500 font-bold mr-3"> #Starter </span>
@@ -17,25 +20,28 @@
     <div class="">
         <div class="p-4 ">
             <div class="flex items-center justify-start space-x-5">
-            <a href="{{route('post.show', [ 'post'=>$post->slug]) }}" class="title text-slate-100 font-bold text-xl ">{{ $post->title }}</a>
+                <a href="{{route('post.show', [ 'post'=>$post->slug]) }}"
+                   class="title text-slate-100 font-bold text-xl ">{{ $post->title }}</a>
                 <span class="cursor-pointer">
-                <x-icons.goto />
+                <x-icons.goto/>
                 </span>
             </div>
             <div class="mt-3">
-                <p > <span class="text-gray-300 tracking-wide"> {!! $post->excerpt !!}</span></p>
+                <p><span class="text-gray-300 tracking-wide"> {!! $post->excerpt !!}</span></p>
                 <x-post-snippet-tags :tags="$tags"/>
             </div>
         </div>
         <div class="bg-teal-900 py-2 flex sm:rounded-none md:rounded-xl lg:rounded-xl  justify-between">
             <span class="px-4 flex items-center">
-                <span class="ml-2 text-slate-200 font-bold"> 4 minute </span>
-                <span class="ml-2 text-slate-200 font-bold"> 5 readers</span>
+                <span class="ml-2 text-slate-200 font-bold"> {{ $post->readTime($post) }} </span>
+                <span class="ml-2 text-slate-200 font-bold"> {{ $post->viewed }} {{ (int)$post->viewed > 1 ? 'readers' : 'reader' }} </span>
             </span>
 
             <span class="px-4 flex items-center">
-                <span class="ml-2 text-slate-200 font-bold"> 4 Likes </span>
-                <span class="ml-2 text-slate-200 font-bold"> 5 comments</span>
+                <span
+                    class="ml-2 text-slate-200 font-bold">{{ $post->likes->count() }} {{ $post->likes->count() >1? 'Likes' : 'Like' }}  </span>
+                <span
+                    class="ml-2 text-slate-200 font-bold">{{ $post->comments->count() }} {{ $post->comments->count() >1? 'Likes' : 'Like' }}  </span>
             </span>
         </div>
 

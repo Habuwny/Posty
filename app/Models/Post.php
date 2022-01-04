@@ -31,18 +31,37 @@ class Post extends Model
   {
     return $this->hasMany(Like::class);
   }
+
   public function comments()
   {
     return $this->hasMany(Comment::class);
   }
 
+  public function readTime(Post $post)
+  {
+    $bod = $post->body;
+    $bodS = explode(" ", $bod);
+    $time = count($bodS) * 0.5;
+    if ($time < 5) {
+      return "5 Seconds";
+    } elseif ($time < 60) {
+      $s = ceil($time);
+      return "$s  Seconds";
+    } elseif ($time === 60) {
+      return "1 Minute";
+    } else {
+      $t = ceil($time / 60);
+      return "$t Minutes";
+    }
+  }
+
   public function setTagsAttribute($tags)
   {
-    //    if (!request()->tags ) {
-    //      $this->attributes["tags"] = "#General";
-    //    } else {
-    //      $this->attributes["tags"] = $tags;
-    //    }
+    if (!request()->tags) {
+      $this->attributes["tags"] = "#General";
+    } else {
+      $this->attributes["tags"] = $tags;
+    }
   }
 
   public function setTitleAttribute($value)

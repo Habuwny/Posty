@@ -1,4 +1,7 @@
 @props(['links'])
+@php
+$usernameR = ["user"=>auth()->user()->username]
+@endphp
 <div
     class="bg-sky-900 px-4 rounded-xl  py-4 space-y-4 p-7 mt-2 " style="position: absolute; right: 0"
 >
@@ -19,7 +22,8 @@
                     </span>
                 </a>
             @elseif($link==='Settings')
-                <x-container.dropdown-item routeLink="auth.logout" :link="$link">
+                <x-container.dropdown-item routeLink="username.settings" :routeLinkPars="$usernameR" :link="$link">
+
                     <x-icons.settings/>
                 </x-container.dropdown-item>
             @elseif($link==='Posting')
@@ -27,7 +31,7 @@
                     <x-icons.posting/>
                 </x-container.dropdown-item>
             @elseif($link==='Dashboard')
-                <x-container.dropdown-item routeLink="auth.logout" :link="$link">
+                <x-container.dropdown-item routeLink="user.dashboard" :routeLinkPars="$usernameR" :link="$link">
                     <x-icons.dashboard/>
                 </x-container.dropdown-item>
             @endif

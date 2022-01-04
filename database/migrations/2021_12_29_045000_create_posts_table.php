@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
       $table->text("slug");
       $table->text("excerpt");
       $table->text("body");
+      $table->unsignedInteger("viewed")->default(0);
       $table->timestamps();
     });
   }

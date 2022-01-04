@@ -31,10 +31,18 @@ class User extends Authenticatable
   {
     return $this->hasMany(UserNotification::class);
   }
-  //  public function participate()
-  //  {
-  //    return $this->hasMany(UserNotification::class, "notifier_id");
-  //  }
+  public function subscribers()
+  {
+    return $this->hasMany(Subscribers::class);
+  }
+  public function subscriptions()
+  {
+    return $this->hasMany(Subscriptions::class);
+  }
+  public function subscriptionNotifications()
+  {
+    return $this->hasMany(SubscriptionNotification::class);
+  }
 
   public function setPasswordAttribute($password)
   {

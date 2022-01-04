@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\SubscriptionNotification;
+use App\Models\Subscriptions;
 use App\Models\Tag;
 use App\Models\UserNotification;
 use Illuminate\Support\Str;
@@ -69,6 +71,7 @@ class PostController extends Controller
     $like = Like::where("post_id", "=", $post->id)
       ->where("user_id", auth()->user()->id)
       ->first();
+
     if ($like) {
       return $like->delete();
     } else {
@@ -76,6 +79,7 @@ class PostController extends Controller
         "post_id" => $post->id,
         "user_id" => auth()->user()->id,
       ]);
+
       if ($newLike->user_id !== $post->user_id) {
         $notify = new UserNotification();
         $notify->seen = "false";
@@ -84,6 +88,18 @@ class PostController extends Controller
         $notify->user_id = $post->user_id;
         $notify->notifier_id = auth()->user()->id;
         $notify->save();
+      }
+
+      $subs = Subscriptions::where("post_id", "=", $post->id)->get();
+      foreach ($subs as $sub) {
+        if ($newLike->user_id !== $sub->user_id) {
+          $subNot = new SubscriptionNotification();
+          $subNot->type = "like";
+          $subNot->post_id = $sub->post_id;
+          $subNot->user_id = $sub->user_id;
+
+          $subNot->save();
+        }
       }
     }
 
@@ -109,6 +125,17 @@ class PostController extends Controller
       $notify->user_id = $post->user_id;
       $notify->notifier_id = auth()->user()->id;
       $notify->save();
+    }
+    $subs = Subscriptions::where("post_id", "=", $post->id)->get();
+    foreach ($subs as $sub) {
+      if ($comment->user_id !== $sub->user_id) {
+        $subNot = new SubscriptionNotification();
+        $subNot->type = "comment";
+        $subNot->post_id = $sub->post_id;
+        $subNot->user_id = $sub->user_id;
+
+        $subNot->save();
+      }
     }
     return redirect()->back();
   }

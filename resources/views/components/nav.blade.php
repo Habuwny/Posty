@@ -1,7 +1,7 @@
 <div class="w-full bg-slate-800 py-2 px-10 flex justify-between items-center relative">
-{{--    {{ ddd(auth()->user()->notifications )}}--}}
+    {{--    {{ ddd(auth()->user()->notifications )}}--}}
     <a href="{{ route('home') }}">
-    <x-icons.logo/>
+        <x-icons.logo/>
     </a>
     <div class="md:block lg:block hidden  lg:w-2/4 relative">
         <input
@@ -16,9 +16,8 @@
     </div>
     <div class="flex space-x-3 justify-center items-center">
         @auth()
-            <x-icons.subscribe/>
-            <x-notification.notification-show />
-
+            <x-subscriber.subscribers-show/>
+            <x-notification.notification-show/>
             <x-user-dropdown
                 :links="['Dashboard', 'Posting', 'Settings', 'Log Out']"
             />

@@ -1,7 +1,7 @@
-@props(['routeLink', 'link'])
+@props(['routeLink', 'link', 'routeLinkPars'=> null])
 
 <a
-    href="{{ route($routeLink) }}"
+    href="{{ route($routeLink, $routeLinkPars) }}"
     class="flex items-center px-3 border-b-2 border-gray-600 rounded cursor-pointer py-2 justify-start text-center  hover:bg-sky-700  focus:sky-800"
 >
     {{ $slot }}
