@@ -3,10 +3,9 @@
     <div class="sm:rounded-none md:rounded-xl lg:rounded-xl pl-4 py-3 bg-gray-700 flex justify-between items-center ">
         <div class="flex  items-center space-x-3">
             <a href="{{ route('user.dashboard', ['user'=> $post->user->username]) }}">
-                <img src="https://i.pravatar.cc/150?u={{$post->id}}" alt="{{ $post->user->name }}"
-                     height="40" width="40"
-                     class="cursor-pointer rounded-full border-solid border-2 border-light-blue-500"
-                >
+                <x-user.avatar widths=40 heights=40 :userId="$post->user->id"/>
+{{--                <img src="https://i.pravatar.cc/150?u=88" alt="avatar" height="35" width="35"--}}
+{{--                     class="cursor-pointer rounded-full border-solid border-2 border-light-blue-500">--}}
             </a>
             <div class="flex flex-col   justify-start  pr-4">
                 <a href="{{ route('user.dashboard', ['user'=> $post->user->username]) }}"

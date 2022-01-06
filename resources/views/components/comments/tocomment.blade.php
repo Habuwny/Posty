@@ -4,7 +4,7 @@
 <div>
     <div class="w-full">
         <div>
-            <x-user-snippet :user="$user"/>
+            <x-user-snippet :user="$user" />
         </div>
         <div class="w-full relative mt-3">
             <form action="{{ route('post.comment', ["post"=> $post->id]) }}" method="POST">

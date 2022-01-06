@@ -10,9 +10,6 @@ class LogoutController extends Controller
   {
     $name = auth()->user()->name;
     auth()->logout();
-    return redirect("/")->with(
-      "success",
-      "Successfully Logged out, See you soon, $name"
-    );
+    return redirect("/")->with("success", "See you soon 🪁👋");
   }
 }

@@ -20,13 +20,17 @@ class RegisterController extends Controller
     $user = User::create($attributes);
 
     auth()->login($user);
-    return redirect("/")->with("success", "Well done, Now you are a Poster 🎉");
+    return redirect("/")->with("success", "Now you are a Poster 🪁🎉");
   }
 
   protected function registerValidation(): array
   {
     return request()->validate([
-      "username" => ["required", Rule::unique("users", "username")],
+      "username" => [
+        "required",
+        Rule::unique("users", "username"),
+        'regex:/^\S*$/u',
+      ],
       "name" => ["required", "max:255"],
       "email" => [
         "required",

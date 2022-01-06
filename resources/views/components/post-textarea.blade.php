@@ -21,5 +21,5 @@
     name="{{$name}}"
     rows="{{ $rows }}"
     placeholder="{{$placeHolder}}"
-></textarea>
+>{{old($name)}}</textarea>
 <x-form.error :error="$error"/>

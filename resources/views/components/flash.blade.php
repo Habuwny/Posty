@@ -1,10 +1,12 @@
 @if(session()->has('success'))
 <div
+    class="bg-blue-900 tracking-wider  text-white py-2 px-4 rounded-xl text-xl"
     x-data="{show: true}"
     x-init="setTimeout(() => show = false, 4000)"
     x-show="show"
-    class="fixed absolute right-0 bg-blue-500 text-white py-2 px-4 rounded bottom-3 right-3 text-xl">
-    <p>{{ session('success')}}</p>
+    >
+    <p>
+        {{ session('success')}}
+    </p>
 </div>
 @endif
-

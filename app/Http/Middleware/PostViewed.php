@@ -19,13 +19,16 @@ class PostViewed
    */
   public function handle(Request $request, Closure $next)
   {
-    $post = $request->route()->parameter("post");
-    $isViewed = Cache::get("post" . $post->id . auth()->user()->id);
-    if ($post->user_is !== auth()->user()->id && !$isViewed) {
-      $vPlus = $post->viewed + 1;
-      $post->update(["viewed" => $vPlus]);
-      Cache::put("post" . $post->id . auth()->user()->id, true, 3200);
+    if (auth()->user()) {
+      $post = $request->route()->parameter("post");
+      $isViewed = Cache::get("post" . $post->id . auth()->user()->id);
+      if ($post->user_is !== auth()->user()->id && !$isViewed) {
+        $vPlus = $post->viewed + 1;
+        $post->update(["viewed" => $vPlus]);
+        Cache::put("post" . $post->id . auth()->user()->id, true, 3200);
+      }
     }
+
     return $next($request);
   }
 }

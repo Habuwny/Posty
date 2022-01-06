@@ -6,8 +6,7 @@
         <div class="bg-gray-800 py-2 rounded-xl flex items-center text-center  justify-center">
             <div class="pt-1 w lg:pt-0 w-full   flex space-y-3 flex-col items-center justify-center">
                 <div class="">
-                    <img src="https://i.pravatar.cc/500?u={{ $user->id }}" alt="avatar" height="200" width="200"
-                         class=" rounded-full border-solid border-2 border-light-blue-500">
+                    <x-user.avatar widths=200 heights=200 :userId="$user->id"/>
                 </div>
                 <div class="w-full  ">
                     <div class="text-3xl  tracking-wider text-white font-black">{{ $user->name}}</div>

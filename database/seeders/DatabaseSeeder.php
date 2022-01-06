@@ -13,12 +13,12 @@ class DatabaseSeeder extends Seeder
       $this->command->info("Done! All your databases are refreshed ");
     }
     $this->call([
-      UserTableSeeder::class,
+      //      UserTableSeeder::class,
       TagTableSeeder::class,
-      PostTableSeeder::class,
-      PostTagTableSeeder::class,
-      LikeTableSeeder::class,
-      CommentTableSeeder::class,
+      //      PostTableSeeder::class,
+      //      PostTagTableSeeder::class,
+      //      LikeTableSeeder::class,
+      //      CommentTableSeeder::class,
     ]);
   }
 }

@@ -15,7 +15,10 @@ class CreatePostsTable extends Migration
   {
     Schema::create("posts", function (Blueprint $table) {
       $table->id();
-      $table->foreignId("user_id");
+      $table
+        ->foreignId("user_id")
+        ->constrained()
+        ->cascadeOnDelete();
       $table->text("tags")->default("#general");
       $table->text("title");
       $table->text("slug");

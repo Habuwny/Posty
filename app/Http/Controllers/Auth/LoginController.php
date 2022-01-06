@@ -27,6 +27,6 @@ class LoginController extends Controller
 
     session()->regenerate();
     $name = auth()->user()->name;
-    return redirect("/")->with("success", "Welcome back, $name ");
+    return redirect("/")->with("success", "Welcome back 🔙🤚");
   }
 }

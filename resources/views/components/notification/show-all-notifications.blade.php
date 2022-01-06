@@ -1,14 +1,14 @@
 @props(['notifications'])
 <div
-    class="bg-gray-800 flex  rounded-xl " style="position: absolute; right: 0;"
+    class="bg-sky-900 flex  rounded-xl " style="position: absolute; right: 0;"
 >
     <div class=" w-80  rounded-xl">
-        <div class="text-center rounded-t-xl  bg-sky-900 font-bold tracking-wider py-3" >
-            <span class="text-lg text-white">Notifications</span>
+        <div class="text-center rounded-t-xl  bg-red-900 font-bold tracking-wider py-5" >
+            <span class="text-lg text-white px-0">Notifications</span>
         </div>
-        <div class="mt-4 mb-4 notification-scroll" style=" overflow-y: auto ;max-height: 30rem">
+        <div class="rounded mt-4 mb-4 notification-scroll" style=" overflow-y: auto ;max-height: 30rem">
             @foreach($notifications as $notification)
-                <div class=" {{ $notification->seen === "true" ?'bg-slate-700 text-gray-500 font-semibold':'bg-slate-900 text-white font-bold' }}  cursor-pointer" >
+                <div class="h-20  border-b-2 border-gray-600  focus:sky-800 {{ $notification->seen === "true" ?'bg-slate-700 text-gray-500 font-semibold hover:bg-slate-800':'bg-sky-900 hover:bg-sky-800 text-white font-bold' }}  cursor-pointer" >
                 <x-notification.notification-item :notification="$notification"/>
                 </div>
             @endforeach

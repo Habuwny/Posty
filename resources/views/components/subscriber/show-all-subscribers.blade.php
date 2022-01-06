@@ -1,15 +1,14 @@
 @props(['subscriptionNotifications'])
 <div
-    class="bg-gray-800 flex  rounded-xl " style="position: absolute; right: 0;"
+    class="bg-sky-900  flex  rounded-xl space-y-4  " style="position: absolute; right: 0;"
 >
-    <div class=" w-96  rounded-xl">
-{{--        <div class="text-center rounded-t-xl  bg-sky-900 font-bold tracking-wider py-3" >--}}
-        <div class="text-center rounded-t-xl  bg-rose-900 font-bold tracking-wider py-3" >
-            <span class="text-lg text-white">Subscriptions</span>
+    <div class="w-96  rounded-xl">
+        <div class="text-center rounded-t-xl  bg-green-900  font-bold tracking-wider py-5" >
+            <span class="text-lg text-white px-0">Subscriptions</span>
         </div>
-        <div class="mt-4 mb-4 space-y-2 subscriber-scroll" style=" overflow-y: auto ;max-height: 30rem">
+        <div class=" rounded  subscriber-scroll py-2 justify-start text-center   " style=" overflow-y: auto ;max-height: 30rem">
             @foreach($subscriptionNotifications as $subscriptionNotification)
-                <div class="h-36 {{ $subscriptionNotification->checked === "true" ?'bg-slate-700 text-gray-500 font-semibold':'bg-pink-900 text-white font-bold' }}  cursor-pointer" >
+                <div class="h-36 text-center flex justify-center border-b-2 border-gray-600  focus:sky-800 {{ $subscriptionNotification->checked === "true" ?'bg-slate-700 text-gray-500 font-semibold hover:bg-slate-800':'bg-sky-900 hover:bg-sky-800 text-white font-bold' }}  cursor-pointer" >
                     <x-subscriber.subscribers-item :subscriptionNotification="$subscriptionNotification"/>
                 </div>
             @endforeach

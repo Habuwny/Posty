@@ -6,10 +6,7 @@
             class="sm:rounded-none md:rounded-xl lg:rounded-xl pl-4 py-1 bg-cyan-900 flex justify-center flex-col items-center ">
             <div class="flex flex-col items-center space-x-3">
                 <a href="{{ route('user.dashboard', ['user'=> $comment->user->username]) }}">
-                <img src="https://i.pravatar.cc/150?u={{ $comment->id }}" alt="profile"
-                     height="40" width="40"
-                     class="cursor-pointer rounded-full border-solid border-2 border-light-blue-500"
-                >
+                    <x-user.avatar widths=40 heights=40 :userId="$comment->user->id"/>
                 </a>
                 <div class="flex flex-col justify-center items-center  pr-4">
                     <a href="{{ route('user.dashboard', ['user'=> $comment->user->username]) }}" class="text-slate-100 title font-bold text-lg">{{ $comment->user->name }}</a>
@@ -25,8 +22,6 @@
                     <p><span class="text-gray-100 text-sm lg:text-lg tracking-wide"> {!! $comment->content !!}</span></p>
                 </div>
             </div>
-            {{--                <div class="bg-teal-900 py-2 flex sm:rounded-none md:rounded-xl lg:rounded-xl  justify-between">--}}
-
         </div>
     </div>
 </div>

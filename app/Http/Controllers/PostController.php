@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Image;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\SubscriptionNotification;
 use App\Models\Subscriptions;
 use App\Models\Tag;
 use App\Models\UserNotification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -17,35 +19,15 @@ class PostController extends Controller
   {
     return view("posts.index", [
       "posts" => Post::latest()
+        ->filter(request(["tag", "search"]))
         ->with("categories")
-        ->simplePaginate(5),
+        ->paginate(10),
     ]);
   }
 
   public function create()
   {
     return view("posts.create");
-  }
-
-  public function store()
-  {
-    request()->slug = Str::slug(request()->title);
-
-    $attributes = array_merge($this->validatePost(), [
-      "user_id" => request()->user()->id,
-      "slug" => request()->slug,
-    ]);
-    $post = Post::create($attributes);
-
-    $tags = $post->tags;
-    foreach (explode(",", $tags) as $tag) {
-      $tagId = Tag::where("name", "=", $tag)->value("id");
-      if ($tagId) {
-        $post->categories()->attach($tagId);
-      }
-    }
-
-    return redirect("/")->with("success", "Post Published 👍 🎉");
   }
 
   public function show(Post $post)
@@ -140,13 +122,13 @@ class PostController extends Controller
     return redirect()->back();
   }
 
-  protected function validatePost(): array
+  public function destroy(Post $post)
   {
-    return request()->validate([
-      "title" => ["required", "min:5"],
-      "tags" => ["max:255, required"],
-      "excerpt" => ["required", "max:255"],
-      "body" => ["required"],
-    ]);
+    if (auth()->user()->id === $post->user_id) {
+      $dPost = Post::find($post->id);
+      $dPost->delete();
+    }
+
+    return redirect("/")->with("Post deleted ✂️ ✂️");
   }
 }

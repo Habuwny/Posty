@@ -36,6 +36,26 @@ class Post extends Model
   {
     return $this->hasMany(Comment::class);
   }
+  public function image()
+  {
+    return $this->hasOne(Image::class, "type_id");
+  }
+
+  public function scopeFilter($query, array $filters)
+  {
+    $query->when($filters["tag"] ?? false, function ($query, $tag) {
+      $query->where(function ($query) use ($tag) {
+        $query->where("tags", "like", "%" . $tag . "%");
+      });
+    });
+    $query->when($filters["search"] ?? false, function ($query, $search) {
+      $query->where(function ($query) use ($search) {
+        $query
+          ->where("title", "like", "%" . $search . "%")
+          ->orWhere("body", "like", "%" . $search . "%");
+      });
+    });
+  }
 
   public function readTime(Post $post)
   {

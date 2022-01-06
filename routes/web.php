@@ -2,17 +2,19 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CreatePost;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\SubscribersController;
+use App\Http\Controllers\SubscriptionNotificationController;
 use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserNotificationController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserUpdate;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [PostController::class, "index"])->name("home");
 Route::get("/posting", [PostController::class, "create"])->name("posts.create");
-Route::post("/posting", [PostController::class, "store"])->name("posts.store");
+Route::post("/posting", [CreatePost::class, "store"])->name("posts.store");
 
 Route::get("/posts/{post:slug}", [PostController::class, "show"])
   ->name("post.show")
@@ -22,10 +24,19 @@ Route::post("/posts/{post}/like", [PostController::class, "like"])
   ->name("post.like")
   ->middleware("auth");
 
+Route::delete("/posts/{post}/destroy", [PostController::class, "destroy"])
+  ->name("post.destroy")
+  ->middleware("auth");
+
 Route::post("/posts/{post}/subscription", [
   SubscriptionsController::class,
   "add",
 ])->name("subscription.add");
+
+Route::get("userSubscription/{subscriptionNotification}", [
+  SubscriptionNotificationController::class,
+  "checked",
+])->name("subscriptionNotification.check");
 
 Route::post("/posts/{post}/comment", [PostController::class, "comment"])
   ->name("post.comment")
@@ -35,11 +46,6 @@ Route::get("/userNotifications/{userNotification}", [
   UserNotificationController::class,
   "seen",
 ])->name("userNotification.seen");
-
-Route::post("/userNotifications/{userSubscriber}", [
-  SubscribersController::class,
-  "check",
-])->name("userSubscriber.check");
 
 /////////
 
@@ -62,7 +68,7 @@ Route::get("{user:username}/settings", [UserController::class, "settings"])
   ->name("username.settings")
   ->middleware("can:owner");
 
-Route::put("{user:username}/settings", [UserController::class, "update"])->name(
+Route::put("{user:username}/settings", [UserUpdate::class, "update"])->name(
   "user.update"
 );
 
