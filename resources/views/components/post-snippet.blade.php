@@ -20,10 +20,13 @@
         <div class="p-4 ">
             <div class="flex items-center justify-start space-x-5">
                 <a href="{{ route('post.show', [ 'post'=>$post->slug]) }}"
-                   class="title text-slate-100 font-bold text-xl ">{{ $post->title }}</a>
+                   class="title text-slate-100 font-bold text-xl ">{{ $post->title }}
+                </a>
+                <a href="{{ route('post.show', [ 'post'=>$post->slug]) }}">
                 <span class="cursor-pointer">
                 <x-icons.goto/>
                 </span>
+                </a>
             </div>
             <div class="mt-3">
                 <p><span class="text-gray-300 tracking-wide"> {!! $post->excerpt !!}</span></p>
