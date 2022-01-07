@@ -766,6 +766,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 9999px;
 }
 
+.rounded-none {
+  border-radius: 0px;
+}
+
 .rounded-t-xl {
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
@@ -1339,8 +1343,16 @@ input[type="search"]::-webkit-search-results-decoration {
     width: 40%;
   }
 
+  .sm\:w-10\/12 {
+    width: 83.333333%;
+  }
+
   .sm\:rounded-none {
     border-radius: 0px;
+  }
+
+  .sm\:rounded-xl {
+    border-radius: 0.75rem;
   }
 
   .sm\:px-6 {
@@ -1374,6 +1386,14 @@ input[type="search"]::-webkit-search-results-decoration {
 
   .md\:w-9\/12 {
     width: 75%;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
+  .md\:w-4\/6 {
+    width: 66.666667%;
   }
 
   .md\:rounded-xl {
@@ -1430,6 +1450,10 @@ input[type="search"]::-webkit-search-results-decoration {
 
   .lg\:w-3\/5 {
     width: 60%;
+  }
+
+  .lg\:w-4\/6 {
+    width: 66.666667%;
   }
 
   .lg\:flex-row {

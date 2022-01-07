@@ -42,7 +42,7 @@ return [
   "different" => "The :attribute and :other must be different.",
   "digits" => "The :attribute must be :digits digits.",
   "digits_between" => "The :attribute must be between :min and :max digits.",
-  "dimensions" => "The :attribute has invalid pg dimensions.",
+  "dimensions" => "The :attribute has invalid image dimensions.",
   "distinct" => "The :attribute field has a duplicate value.",
   "email" => "The :attribute must be a valid email address.",
   "ends_with" => "The :attribute must end with one of the following: :values.",
@@ -64,7 +64,7 @@ return [
       "The :attribute must be greater than or equal to :value characters.",
     "array" => "The :attribute must have :value items or more.",
   ],
-  "pg" => "The :attribute must be an pg.",
+  "image" => "The :attribute must be an image.",
   "in" => "The selected :attribute is invalid.",
   "in_array" => "The :attribute field does not exist in :other.",
   "integer" => "The :attribute must be an integer.",
@@ -157,7 +157,21 @@ return [
       "rule-name" => "custom-message",
     ],
   ],
-
+  "post-image" => [
+    "required" => "the image is required",
+    "dimensions" => [
+      "min_width" =>
+        "The :attribute dimension (width) cannot be less than :min_width px",
+      "max_width" =>
+        "The :attribute dimension (width) cannot be more than :max_width px",
+      "min_height" =>
+        "The :attribute dimension (height) cannot be less than :min_width px",
+      "max_height" =>
+        "The :attribute dimension (height) cannot be more than :max_width px",
+    ],
+    "mimes" => "the image must be in type jpg, png or jpeg",
+    "max" => "the image size  must not be more than 3072 MB",
+  ],
   /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

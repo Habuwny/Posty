@@ -5,13 +5,13 @@
     </a>
 {{--    <form method="GET" action="/">--}}
 {{--    value="{{ltrim($tag->name, '#')}}--}}
-    <form method="GET" action="/" class="hidden sm:w-2/4 sm:block relative w-full">
+    <form method="GET" action="/" class="hidden sm:w-2/5 md:w-1/2 w-full sm:block relative ">
     <div class="" >
         <input
             class="w-full px-2 text-lg focus:outline-none outline-ring-blue-500  focus:ring-blue-500  bg-gray-200 py-2 rounded-xl border-sky-900 border border:4 ring-4 "
             type="search"
             name="search"
-            PLACEHOLDER="Search"
+            placeholder="Search ..."
         >
 
         <button class="cursor-pointer text-gray-300 absolute top-1/2  right-4 " style="transform: translateY(-50%)">

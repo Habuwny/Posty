@@ -88,13 +88,22 @@ class CreatePost extends Controller
 
   protected function validatePost(): array
   {
-    return request()->validate([
-      "title" => ["required", "min:5"],
-      "tags" => ["max:255, required"],
-      "excerpt" => ["required", "max:255"],
-      "body" => ["required"],
-      "image" =>
-        "required|image|mimes:jpg,png,jpeg|max:3072|dimensions:min_width=1000,min_height=500,max_width=3000,max_height=2000",
-    ]);
+    return request()->validate(
+      [
+        "title" => ["required", "min:5"],
+        "tags" => ["max:255, required"],
+        "excerpt" => ["required", "max:255"],
+        "body" => ["required"],
+        "image" =>
+          "required|image|mimes:jpg,png,jpeg|max:3072|dimensions:min_width=1000,min_height=500",
+      ],
+      [
+        "image.mimes" => "the image must be in type jpg, png or jpeg",
+        "image.dimensions" =>
+          "The post image must be at least :min_width x :min_height pixels",
+        "image.max" => "the image size  must not be more than 3072 MB",
+        "image.required" => "post needs an image",
+      ]
+    );
   }
 }

@@ -126,6 +126,16 @@ class PostController extends Controller
   {
     if (auth()->user()->id === $post->user_id) {
       $dPost = Post::find($post->id);
+      $extensions = collect(["jpg", "jpeg", "png"]);
+      foreach ($extensions as $oldExtension) {
+        //        $imgPath = "post/bg/$dPost->slug.$oldExtension";
+        $path = storage_path(
+          "app\\public\\post\\bg\\$dPost->slug.$oldExtension"
+        );
+        if (Storage::exists($path)) {
+          Storage::delete($path);
+        }
+      }
       $dPost->delete();
     }
 

@@ -21,8 +21,7 @@ if (auth()->user()) {
     }
 @endphp
 <div class="">
-    <div>
-{{--        <img src="https://picsum.photos/1600/450" alt="post image" height="450" class="ring-4 rounded ring-blue-500">--}}
+    <div class="bg-red-500" style="">
         <img src="{{$path}}" alt="post image" height="450" class="ring-4 rounded ring-blue-500">
     </div>
     <x-user-snippet :post="$post" :user="$post->user"/>

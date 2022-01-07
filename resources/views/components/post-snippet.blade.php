@@ -1,6 +1,6 @@
 @props(['post', 'tags'])
-<div class="sm:rounded-none md:rounded-xl lg:rounded-xl bg-gray-800 space-y-0.5">
-    <div class="sm:rounded-none md:rounded-xl lg:rounded-xl pl-4 py-3 bg-gray-700 flex justify-between items-center ">
+<div class="rounded-none sm:rounded-xl md:rounded-xl lg:rounded-xl  bg-gray-800 space-y-0.5">
+    <div class="rounded-none sm:rounded-xl md:rounded-xl lg:rounded-xl pl-4 py-3 bg-gray-700 flex justify-between items-center ">
         <div class="flex  items-center space-x-3">
             <a href="{{ route('user.dashboard', ['user'=> $post->user->username]) }}">
                 <x-user.avatar widths=40 heights=40 :userId="$post->user->id"/>
@@ -19,7 +19,7 @@
     <div class="">
         <div class="p-4 ">
             <div class="flex items-center justify-start space-x-5">
-                <a href="{{route('post.show', [ 'post'=>$post->slug]) }}"
+                <a href="{{ route('post.show', [ 'post'=>$post->slug]) }}"
                    class="title text-slate-100 font-bold text-xl ">{{ $post->title }}</a>
                 <span class="cursor-pointer">
                 <x-icons.goto/>
@@ -40,7 +40,7 @@
                 <span
                     class="ml-2 text-slate-200 font-bold">{{ $post->likes->count() }} {{ $post->likes->count() >1? 'Likes' : 'Like' }}  </span>
                 <span
-                    class="ml-2 text-slate-200 font-bold">{{ $post->comments->count() }} {{ $post->comments->count() >1? 'Likes' : 'Like' }}  </span>
+                    class="ml-2 text-slate-200 font-bold">{{ $post->comments->count() }} {{ $post->comments->count() >1? 'Comments' : 'Comment' }}  </span>
             </span>
         </div>
 
