@@ -1,24 +1,27 @@
 @props(['post', 'isLiked'])
 
 @php
-    if ($post->image) {
-        $path = asset('storage/' . $post->image->path);
-    }
-    else{
-        $path = asset('storage/' . "post/bg/default.png");
-    }
-if (auth()->user()) {
-    $subs = \App\Models\Subscriptions::where('user_id', '=', auth()->user()->id)->where('post_id', '=', $post->id)->get();
-    $isSub = $subs->count() > 0 ?? false;
-    }
-    $likes =  $post->likes->count();
-    if ($likes === 0) {
-        $likes = '';
-    }elseif ($likes === 1){
-        $likes =  $post->likes->count(). ' like';
-    }elseif ($likes > 1){
-        $likes =  $post->likes->count(). ' likes';
-    }
+    $postImage= \App\Models\Image::where('type_id', '=', $post->id)->where('type', '=', 'post')->first();
+          if ($postImage) {
+                  #dd($userImages);
+                 $path = asset('storage/' .  $postImage->path);
+          }
+          else{
+              $path = asset('storage/' . "post/bg/default.png");
+          }
+
+  if (auth()->user()) {
+      $subs = \App\Models\Subscriptions::where('user_id', '=', auth()->user()->id)->where('post_id', '=', $post->id)->get();
+      $isSub = $subs->count() > 0 ?? false;
+      }
+      $likes =  $post->likes->count();
+      if ($likes === 0) {
+          $likes = '';
+      }elseif ($likes === 1){
+          $likes =  $post->likes->count(). ' like';
+      }elseif ($likes > 1){
+          $likes =  $post->likes->count(). ' likes';
+      }
 @endphp
 <div class="">
     <div class="bg-red-500" style="">
