@@ -22,7 +22,7 @@
                 <div class="w-full  flex flex-col justify-start items-start">
                     <label class="font-extrabold rounded justify-self-start text-lg custom-file-upload bg-gray-200  ">
                         <input value="{{ old('file') }}" type="file" name="image"/>
-                       {{ old('image') ? old('image') : 'Upload new pg ' }}
+                       {{ old('image') ? old('image') : 'Upload new image ' }}
                     </label>
                     <div>
                     <x-form.error error="{{ $errors->first('image')}}" />

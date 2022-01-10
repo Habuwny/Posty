@@ -19,7 +19,7 @@ class UserUpdate extends Controller
         "image|mimes:jpg,png,jpeg|max:1024|dimensions:min_width=400,min_height=400,max_width=1000,max_height=1000",
     ]);
     //    ddd($validateImg);
-    if (request()->file("pg")) {
+    if (request()->file("image")) {
       $extensions = collect(["jpg", "jpeg", "png"]);
 
       $userName = $user->username;
@@ -29,7 +29,7 @@ class UserUpdate extends Controller
           Storage::delete($imgPath);
         }
 
-        $img = request()->file("pg");
+        $img = request()->file("image");
         $extension = $img->getClientOriginalExtension();
         $img_path = $userName . "." . $extension;
         $path = storage_path("app\\public\\user\\avatar\\");

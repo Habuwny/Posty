@@ -11,10 +11,10 @@ class Image extends Model
 
   public function user()
   {
-    return $this->belongsTo(User::class, "type_id", "id");
+    return $this->belongsTo(User::class, "type_id");
   }
   public function post()
   {
-    return $this->belongsTo(Post::class, "type_id", "id");
+    return $this->belongsTo(Post::class, "type_id");
   }
 }

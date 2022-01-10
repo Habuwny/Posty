@@ -1,13 +1,9 @@
 @props(['heights', 'widths', 'userId'])
 @php
-    #{{--    ddd($userId);--}}
-        $user = \App\Models\User::find($userId);
-        if ($user->image) {
-            if ($user->image->type === 'user') {
-               $path = asset('storage/' . $user->image->path);
-            }else{
-             $path = asset('storage/' . "user/avatar/default.png");
-            }
+        $userImages= \App\Models\Image::where('type_id', '=', $userId)->where('type', '=', 'user')->first();
+        if ($userImages) {
+                #dd($userImages);
+               $path = asset('storage/' .  $userImages->path);
         }
         else{
             $path = asset('storage/' . "user/avatar/default.png");

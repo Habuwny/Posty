@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
       $table->id();
       $table->string("type");
       $table->unsignedBigInteger("type_id");
+
       $table->string("path");
       $table->timestamps();
     });
