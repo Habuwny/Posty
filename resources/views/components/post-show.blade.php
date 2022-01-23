@@ -24,19 +24,23 @@
       }
 @endphp
 <div class="">
-    <div class="bg-red-500" style="">
+    <div>
         <img src="{{$path}}" alt="post image" height="450" class="ring-4 rounded ring-blue-500">
     </div>
-    <x-user-snippet :post="$post" :user="$post->user"/>
+    <div style="background-color: #121921">
+        <x-user-snippet :post="$post" :user="$post->user"/>
+    </div>
     <div class="mt-7">
-        <h1 class="sm:text-3xl md:text-4xl lg:text-5xl  text-white">{{ $post->title }}</h1>
+        <h1 class="text-white font-black text-6xl">{{$post->title }}</h1>
         <div>
             <x-post-snippet-tags :tags="$post->categories"/>
         </div>
     </div>
 
     <div class="mt-10">
-        <p class="text-2xl text-gray-200">{{ $post->body }}</p>
+        <div>
+        {!! $post->body  !!}
+        </div>
         <div class="flex justify-end  items-end">
             @auth()
                 @if ($post->user_id === auth()->user()->id)

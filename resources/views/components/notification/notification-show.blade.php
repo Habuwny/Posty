@@ -14,10 +14,15 @@
             <div id="$notifications-red" class="rounded-full bg-red-500 absolute left-1 {{$unSeenNotifications->count() >= 1 ? 'visible': 'invisible' }}" style="min-width: 10px; min-height: 10px"></div>
             <x-icons.notification class=""/>
         </div>
-        <div x-show="open"  class="">
+        <div x-show="open" x-cloak class="">
 {{--            <x-user-dropdown-links :links="$links" />--}}
             <x-notification.show-all-notifications  :notifications="$notifications"/>
         </div>
     </div>
 </div>
 
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>

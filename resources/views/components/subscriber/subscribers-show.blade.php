@@ -14,9 +14,14 @@
             <div id="$notifications-red" class="rounded-full bg-green-500 absolute  {{ $unsubscriptionNotifications->count() >= 1 ? 'visible': 'invisible' }}" style="min-width: 15px; min-height: 15px"></div>
             <x-icons.subscribe/>
         </div>
-        <div x-show="open"  class="">
+        <div x-show="open" x-cloak class="">
             <x-subscriber.show-all-subscribers  :subscriptionNotifications="$subscriptionNotifications"/>
         </div>
     </div>
 </div>
 
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>

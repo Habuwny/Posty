@@ -3,7 +3,8 @@
 <div
     x-data="{ open: false}"
     @click.away="open = false"
-    class="relative">
+
+    class="relative ">
 
     <div @click="open = ! open">
 {{--        @props(['heights', 'widths'])--}}
@@ -12,9 +13,14 @@
 {{--             class="cursor-pointer rounded-full border-solid border-2 border-light-blue-500">--}}
 
     </div>
-    <div x-show="open">
-
+    <div x-show="open" x-cloak>
         <x-user-dropdown-links :links="$links"/>
     </div>
 </div>
+
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>
 

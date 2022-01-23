@@ -20,7 +20,7 @@
         <div class="p-4 ">
             <div class="flex items-center justify-start space-x-5">
                 <a href="{{ route('post.show', [ 'post'=>$post->slug]) }}"
-                   class="title text-slate-100 font-bold text-xl ">{{ $post->title }}
+                   class="title text-slate-100 font-bold text-xl ">{!!  $post->title!!}
                 </a>
                 <a href="{{ route('post.show', [ 'post'=>$post->slug]) }}">
                 <span class="cursor-pointer">

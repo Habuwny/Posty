@@ -1,0 +1,18 @@
+.cke_wordcount {
+    display: block;
+    float: right;
+    margin-top: -2px;
+    margin-right: 3px;
+    color: #fff;
+}
+
+.cke_wordcount_rtl {
+    float: left;
+}
+
+.cke_wordcountLimitReached {
+    color: red ! important
+}
+.cke_wordcount_txt-area-body{
+    color: #fff;
+}

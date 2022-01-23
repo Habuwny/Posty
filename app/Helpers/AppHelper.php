@@ -23,6 +23,9 @@ class AppHelper
       }
     }
   }
+  public function postExcerpt ($body) {
+
+  }
   public static function instance()
   {
     return new AppHelper();

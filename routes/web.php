@@ -13,8 +13,8 @@ use App\Http\Controllers\UserUpdate;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [PostController::class, "index"])->name("home");
-Route::get("/posting", [PostController::class, "create"])->name("posts.create");
-Route::post("/posting", [CreatePost::class, "store"])->name("posts.store");
+Route::get("/posting", [PostController::class, "create"])->name("posts.create")->middleware('auth');
+Route::post("/posting", [CreatePost::class, "store"])->name("posts.store")->middleware('auth');
 
 Route::get("/posts/{post:slug}", [PostController::class, "show"])
   ->name("post.show")

@@ -1,7 +1,9 @@
 @props(['name', 'type', 'error', 'value'=> null])
 
 @php
-    $val =  $value ? $value :  ($name === 'password' ? '' : old($name)) ;
+
+if ($name === 'password') $val = '';
+else $val= old($name);
 @endphp
 <div>
     <input
