@@ -20,7 +20,7 @@ CKEDITOR.editorConfig = function (config) {
     // not needed in the Standard(s) toolbar.
     config.removeButtons = 'Underline,Subscript,Superscript';
     config.extraPlugins = 'codesnippet,colorbutton,panelbutton,wordcount,imageresizerowandcolumn,imageresize';
-    config.codeSnippet_theme = 'monokai_sublime'
+    config.codeSnippet_theme = 'atelier-seaside.dark'
 
     // Set the most common block elements.
     config.format_tags = 'p;h1;h2;h3;pre';

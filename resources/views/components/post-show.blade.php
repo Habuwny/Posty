@@ -30,15 +30,15 @@
     <div style="background-color: #121921">
         <x-user-snippet :post="$post" :user="$post->user"/>
     </div>
-    <div class="mt-7">
-        <h1 class="text-white font-black text-6xl">{{$post->title }}</h1>
+    <div class="mt-7 px-1">
+        <h1 class="text-white font-black text-2xl sm:text-3xl  md:text-4xl lg:text-5xl">{{$post->title }}</h1>
         <div>
             <x-post-snippet-tags :tags="$post->categories"/>
         </div>
     </div>
 
     <div class="mt-10">
-        <div>
+        <div class="text-gray-100">
         {!! $post->body  !!}
         </div>
         <div class="flex justify-end  items-end">

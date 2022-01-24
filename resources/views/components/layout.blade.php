@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 @php
-@endphp
+    @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -11,8 +11,8 @@
     {{--    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>--}}
 
     {{--    <script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>--}}
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.17.1/plugins/codesnippet/lib/highlight/styles/default.min.css" integrity="sha512-tWTBpkVTwi4rt6CmvlboboFFTsaUb+PtLBwgfNj3YD6hipup6nSPga/Sr/mJ+LXAMVFUK0q8ArdgsQol3NKlNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
-{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.17.1/plugins/codesnippet/lib/highlight/styles/default.min.css" integrity="sha512-tWTBpkVTwi4rt6CmvlboboFFTsaUb+PtLBwgfNj3YD6hipup6nSPga/Sr/mJ+LXAMVFUK0q8ArdgsQol3NKlNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
+    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.17.1/plugins/codesnippet/lib/highlight/styles/default.min.css" integrity="sha512-tWTBpkVTwi4rt6CmvlboboFFTsaUb+PtLBwgfNj3YD6hipup6nSPga/Sr/mJ+LXAMVFUK0q8ArdgsQol3NKlNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
+    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.17.1/plugins/codesnippet/lib/highlight/styles/default.min.css" integrity="sha512-tWTBpkVTwi4rt6CmvlboboFFTsaUb+PtLBwgfNj3YD6hipup6nSPga/Sr/mJ+LXAMVFUK0q8ArdgsQol3NKlNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />--}}
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css">
@@ -31,9 +31,14 @@
             width: 100%;
         }
     </style>
-    <link rel="stylesheet" type="text/css"  href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/default.css') }}">
-    <link rel="stylesheet" type="text/css"  href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css') }}">
-    <script type="text/javascript" src="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/default.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css') }}">
+    {{--    <link rel="stylesheet" type="text/css"  href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/atelier-lakeside.dark.css') }}">--}}
+    {{--    <link rel="stylesheet" type="text/css"  href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/colors.css') }}">--}}
+    <script type="text/javascript"
+            src="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body class="bg-gray-900">
@@ -42,14 +47,14 @@
     <x-nav/>
     <div class="flex  flex-col justify-between" style="min-height: 100%">
         {{ $slot }}
-        <x-bottom/>
     </div>
-
-    <div class="absolute right-1 top-20">
-        <x-flash/>
-    </div>
-    <div>
-    </div>
+    <x-bottom/>
+</div>
+<div class="absolute right-1 top-20">
+    <x-flash/>
+</div>
+<div>
+</div>
 </div>
 
 <script src="/js/textarea-ckeditor.js"></script>

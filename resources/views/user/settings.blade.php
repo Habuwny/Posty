@@ -1,5 +1,13 @@
 <x-layout>
     @php
+            $userImages= \App\Models\Image::where('type_id', '=', auth()->user()->id)->where('type', '=', 'user')->first();
+            if ($userImages) {
+                    #dd($userImages);
+                   $path = asset('storage/' .  $userImages->path);
+            }
+            else{
+                $path = asset('storage/' . "user/avatar/default.png");
+            }
         $un = '@'.$user->username;
         $pass = 'كل2f-ffR';
     @endphp
@@ -20,10 +28,20 @@
                 <x-form.input :value="$pass" name="password" type="password"
                               error="{{ $errors->first('password') ?? '' }}"/>
                 <div class="w-full  flex flex-col justify-start items-start">
+                    <div class="flex items-center space-x-6">
+
                     <label class="font-extrabold rounded justify-self-start text-lg custom-file-upload bg-gray-200  ">
-                        <input value="{{ old('file') }}" type="file" name="image"/>
+                        <input id="user-avatar" value="{{ old('file') }}" type="file" name="image"/>
                        {{ old('image') ? old('image') : 'Upload new image ' }}
                     </label>
+                    <div>
+                        <img
+                            class="rounded-full"
+                            id="preview-image-before-upload-avatar"
+                            src="{{$path}}"
+                            alt="preview image" style="max-height: 60px;min-width: 60px">
+                    </div>
+                    </div>
                     <div>
                     <x-form.error error="{{ $errors->first('image')}}" />
                     </div>
@@ -68,3 +86,18 @@
         cursor: pointer;
     }
 </style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+        $('#user-avatar').change(function () {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                $('#preview-image-before-upload-avatar').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+    });
+</script>
+

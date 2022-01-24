@@ -11,7 +11,7 @@ CKEDITOR.replace('txt-area-body', {
         {name: 'insert', items: ['EmbedSemantic', 'CodeSnippet', 'Image', 'EmbedSemantic']},
         { name: 'riga1',  	items : ['TextColor','BGColor']}
     ],
-   codeSnippet_theme: 'monokai_sublime'
+   codeSnippet_theme: 'atelier-seaside.dark'
 
 });
 CKEDITOR.on('instanceReady', function (e) {

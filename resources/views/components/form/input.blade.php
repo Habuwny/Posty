@@ -12,7 +12,7 @@ else $val= old($name);
         type="{{ $type }}"
         name="{{ $name }}"
         placeholder="{{ ucwords($name) }}"
-        value="{{$val}}"
+        value="{{ auth()->user() ? $value: $val }}"
     >
    <x-form.error :error="$error" />
 </div>
