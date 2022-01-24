@@ -21,7 +21,7 @@ class PostController extends Controller
       "posts" => Post::latest()
         ->filter(request(["tag", "search"]))
         ->with("categories")
-        ->cursorPaginate(10)->withQueryString(),
+        ->simplePaginate(10)
     ]);
   }
 

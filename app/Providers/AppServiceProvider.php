@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -34,8 +35,10 @@ class AppServiceProvider extends ServiceProvider
       $ownerUsr = explode("/", request()->url())[3];
       return auth()->user()->username === $ownerUsr;
     });
+      Paginator::useTailwind();
 
-    //    Gate::define("poster", function (Post $post) {
+
+      //    Gate::define("poster", function (Post $post) {
     //      return $post->user_id !== auth()->user()->id;
     //    });
     //
